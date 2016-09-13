@@ -12,8 +12,6 @@ public class Employee {
     @DatabaseField
     protected String name;
     @DatabaseField
-    protected String address;
-    @DatabaseField
     protected String jobs;
     @DatabaseField
     protected int age;
@@ -27,8 +25,6 @@ public class Employee {
     protected boolean bookmark;
     @DatabaseField
     protected String avatar;
-
-
 
     public int getId() {
         return id;
@@ -46,13 +42,6 @@ public class Employee {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     public String getJobs() {
         return jobs;
@@ -70,7 +59,7 @@ public class Employee {
         this.age = age;
     }
 
-    public boolean is_male() {
+    public boolean getIs_male() {
         return is_male;
     }
 

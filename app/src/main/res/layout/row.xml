@@ -5,7 +5,7 @@
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/tvname"
+        android:id="@+id/tvnameX"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

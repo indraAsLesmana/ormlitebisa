@@ -17,7 +17,7 @@
         android:hint="Add Name in Database" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button1X"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etentry"
@@ -25,12 +25,12 @@
         android:text="Add" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button2X"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etentry"
         android:layout_marginLeft="62dp"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_toRightOf="@+id/button1X"
         android:text="Delete All" />
 
     <ListView
@@ -38,5 +38,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/button2"></ListView>
+        android:layout_below="@+id/button2X"/>
+
 </RelativeLayout>

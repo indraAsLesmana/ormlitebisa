@@ -21,7 +21,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private Context _context;
     private static final String DATABASE_NAME = "ormliteandroid.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
     private Dao<Employee, String> simpleDao = null;
     private RuntimeExceptionDao<Employee, String> simpleRuntimeDao = null;
 
@@ -70,6 +70,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         dao.delete(list);
     }
 
+    /*close connection to database katanya*/
     @Override
     public void close() {
         super.close();
