@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,14 +24,16 @@ public class MainActivity extends AppCompatActivity implements
 
     EditText etEntry;
     ListView listView;
+    GridView gridView;
     EmpAdapter adapter = null;
     DatabaseHelper helper;
     List<Employee> list;
-//    Button btnAdd, btnDeleteAll;
+    //    Button btnAdd, btnDeleteAll;
     Button btnGrid, btnList;
     LinearLayout gridViewFrame;
 
     Button buttonBookmark; //bookmark
+    Button btnEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +42,15 @@ public class MainActivity extends AppCompatActivity implements
 
         listView = (ListView) findViewById(R.id.halamandepan_listview);
         //  listView.setOnClickListener(this);
+        gridView = (GridView) findViewById(R.id.gridview);
+
 
         gridViewFrame = (LinearLayout) findViewById(R.id.gridView);
 
         btnGrid = (Button) findViewById(R.id.gridBtn);
         btnList = (Button) findViewById(R.id.btnList);
-
-      //  buttonBookmark = (Button) findViewById(R.id.btnBookmark);
-
+        btnEdit = (Button) findViewById(R.id.btnEdit);
+        //  buttonBookmark = (Button) findViewById(R.id.btnBookmark);
 
         helper = new DatabaseHelper(this);
 
@@ -54,9 +58,13 @@ public class MainActivity extends AppCompatActivity implements
         btnList.setOnClickListener(this);
 //        buttonBookmark.setOnClickListener(this);
 
-
-
         setDataToAdapter();
+
+        /*langsung diklik ketika, onCreate
+        * */
+        btnList.performClick();
+
+        //setDataToAdapterGridview();
     }
 
     @Override
@@ -66,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements
         return super.onCreateOptionsMenu(menu);
 
     }
-
 
     private void showToast(String setMessage) {
         Toast.makeText(MainActivity.this, setMessage, Toast.LENGTH_SHORT).show();
@@ -85,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements
         adapter = new EmpAdapter(this, R.layout.row2, list);
         listView.setAdapter(adapter);
     }
+
 
     public void deleteData() {
         list = helper.GetData();
@@ -109,13 +117,10 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         /*showToast(list.get(position).getName());*/
-        if (view == buttonBookmark){
+        if (view == buttonBookmark) {
             deleteData();
         }
 

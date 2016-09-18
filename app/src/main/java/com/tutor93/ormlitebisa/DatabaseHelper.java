@@ -1,13 +1,15 @@
 package com.tutor93.ormlitebisa;
 
+import android.accounts.Account;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.util.Log;
 
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -24,6 +26,10 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 3;
     private Dao<Employee, String> simpleDao = null;
     private RuntimeExceptionDao<Employee, String> simpleRuntimeDao = null;
+
+
+    private Dao<Employee, Integer> employessDAO = null;
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -63,6 +69,45 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         return i;
     }
 
+    //    Method for update data
+    public int updateData(Employee emp) {
+        RuntimeExceptionDao<Employee, String> dao = getSimpleDataDao();
+        int i = dao.update(emp);
+        return i;
+    }
+
+    //    Method for loadById
+    public List<Employee> loadById(int id) {
+        List<Employee> temp = null;
+
+        QueryBuilder<Employee, String> queryBuilder = simpleDao.queryBuilder();
+        queryBuilder.where().equals(id);
+
+        try {
+            PreparedQuery<Employee> preparedQuery = queryBuilder.prepare();
+            List<Employee> employees = simpleDao.query(preparedQuery);
+            temp = employees;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return temp;
+    };
+
+/*
+    // get our query builder from the DAO
+    QueryBuilder<Account, String> queryBuilder =
+            accountDao.queryBuilder();
+// the 'password' field must be equal to "qwerty"
+    queryBuilder.where().eq(Account.PASSWORD_FIELD_NAME, "qwerty");
+    // prepare our sql statement
+    PreparedQuery<Account> preparedQuery = queryBuilder.prepare();
+    // query for all accounts that have "qwerty" as a password
+    List<Account> accountList = accountDao.query(preparedQuery);
+
+*/
+
+
     //  method for delete all rows
     public void deleteAll() {
         RuntimeExceptionDao<Employee, String> dao = getSimpleDataDao();
@@ -92,13 +137,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource,
                           int oldVersion, int newVersion) {
-            try {
-                Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-                TableUtils.dropTable(connectionSource, Employee.class, true);
-                onCreate(database, connectionSource);
-            }catch (SQLException e){
-                Log.e(DatabaseHelper.class.getName(), "can't drop database", e);
-                throw new RuntimeException(e);
-            }
+        try {
+            Log.i(DatabaseHelper.class.getName(), "onUpgrade");
+            TableUtils.dropTable(connectionSource, Employee.class, true);
+            onCreate(database, connectionSource);
+        } catch (SQLException e) {
+            Log.e(DatabaseHelper.class.getName(), "can't drop database", e);
+            throw new RuntimeException(e);
+        }
     }
 }

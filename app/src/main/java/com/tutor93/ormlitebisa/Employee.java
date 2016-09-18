@@ -26,6 +26,20 @@ public class Employee {
     @DatabaseField
     protected String avatar;
 
+   /* public boolean bookmark;*/
+
+   /* public Employee (String name, String jobs, int age, boolean is_male,
+                    String join, String notes, boolean bookmark, String avatar) {
+        this.name = name;
+        this.jobs = jobs;
+        this.age = age;
+        this.is_male = is_male;
+        this.join = join;
+        this.notes = notes;
+        this.bookmark = bookmark;
+        this.avatar = avatar;
+    }*/
+
     public int getId() {
         return id;
     }
@@ -83,12 +97,20 @@ public class Employee {
         this.notes = notes;
     }
 
-    public boolean isBookmark() {
+    /*public boolean isBookmark() {
         return bookmark;
     }
 
     public void setBookmark(boolean bookmark) {
         this.bookmark = bookmark;
+    }*/
+
+    public boolean isBookmark() {
+        return bookmark;
+    }
+
+    public void setBookmark(boolean bookmark) {
+       this.bookmark = bookmark;
     }
 
     public String getAvatar() {

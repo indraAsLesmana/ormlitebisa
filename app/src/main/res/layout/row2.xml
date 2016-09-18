@@ -87,7 +87,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.5"
             android:text="Edit"
-            android:id="@+id/button2"
+            android:id="@+id/btnEdit"
             />
 
     </LinearLayout>

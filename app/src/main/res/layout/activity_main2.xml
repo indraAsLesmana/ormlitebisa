@@ -27,16 +27,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
+
             <GridView
+                android:id="@+id/gridview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/halamandepan_gridview"
                 android:numColumns="auto_fit"
+                android:gravity="center"
                 android:stretchMode="spacingWidthUniform"
-                >
-
-            </GridView>
-
+                android:columnWidth="100dp"
+                android:horizontalSpacing="10dp"
+                android:verticalSpacing="24dp"
+                />
 
         </LinearLayout>
 
